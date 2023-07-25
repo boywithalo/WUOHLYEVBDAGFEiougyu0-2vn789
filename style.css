@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Color+Emoji&family=Yeseva+One&display=swap');
+@media (prefers-reduced-motion) {
+}
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+figure {
+  --size: 15vmin;
+  --duration: 4s;
+  --direction: 1;
+  --pull: -1.25;
+  perspective: 30rem;
+  display: grid;
+  grid-template-areas: "figure";
+  place-items: center;
+  inline-size: var(--size);
+  aspect-ratio: 1;
+  animation: spin var(--duration) ease-in-out infinite;
+}
+figure > * {
+  --radius: calc(var(--size) / 2);
+  --deg: calc(var(--i) * (360deg / 12));
+  --hs: 225 100%;
+  --transform-start: translate3d(
+      calc(cos(var(--deg)) * var(--radius)),
+      calc(sin(var(--deg)) * var(--radius)),
+      0
+    )
+    rotate(calc(var(--deg)));
+  grid-area: figure;
+  background-color: #3aa4a7;
+  inline-size: calc(var(--size) / 4);
+  aspect-ratio: 1;
+  clip-path: polygon(25% 25%, 100% 50%, 25% 75%, 0% 50%);
+  transform: var(--transform-start);
+  transform-style: preserve-3d;
+  animation: diamonds var(--duration) cubic-bezier(0.87, 0, 0.13, 1) infinite;
+}
+
+figure:nth-child(2) {
+  --size: 30vmin;
+  --direction: -1;
+  --l: 70%;
+}
+
+figure:nth-child(3) {
+  --size: 55vmin;
+  --pull: -1.125;
+  --l: 80%;
+}
+
+@keyframes spin {
+  0%,
+  25% {
+    transform: scaleX(var(--direction)) rotate(0);
+  }
+
+  75%,
+  100% {
+    transform: scaleX(var(--direction)) rotate(1turn);
+  }
+}
+
+@keyframes diamonds {
+  0%,
+  20% {
+    transform: var(--transform-start);
+  }
+
+  50% {
+    clip-path: polygon(75% 25%, 100% 50%, 75% 75%, 0% 50%);
+    transform: translate3d(
+        calc(cos(var(--deg)) * var(--radius) * var(--pull)),
+        calc(sin(var(--deg)) * var(--radius) * var(--pull)),
+        5rem
+      )
+      rotate(calc(var(--deg) + 90deg));
+  }
+}
+
+body{
+    background-color: black;
+
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center the text horizontally */
+    flex-direction: column;
+    
+}
+
+
+.yii{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
